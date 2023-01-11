@@ -1,4 +1,4 @@
-<th:block th:if="${theme.config.index.index_theme == true}">
+<th:block th:if="${theme.config.index.index_theme == true} and ${not #lists.isEmpty(theme.config.index.menu)}">
 <h2 class="text-3xl text-center tracking-tight font-extrabold text-zinc-900 mt-16 mb-8 dark:text-zinc-200">
   常见主题
 </h2>

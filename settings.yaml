@@ -64,7 +64,7 @@ spec:
           id: header_background_image
           key: header_background_image
           label: Banner背景图片
-          value: /themes/theme-kb/assets/images/default-background.png
+          value: /themes/theme-ocean/assets/images/default-background.png
         - $formkit: radio
           name: banner_search
           label: 是否显示搜索框
@@ -89,7 +89,7 @@ spec:
           id: index_theme
           key: index_theme
           label: 是否显示常见主题
-          value: true
+          value: false
           options:
             - label: 显示
               value: true
@@ -107,7 +107,7 @@ spec:
           id: index_tag
           key: index_tag
           label: 是否显示推荐阅读
-          value: true
+          value: false
           options:
             - label: 显示
               value: true
@@ -145,7 +145,7 @@ spec:
         - $formkit: radio
           name: color_scheme
           label: 默认配色
-          value: system
+          value: light
           options:
             - label: 深色
               value: dark
