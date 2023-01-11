@@ -1,7 +1,7 @@
 apiVersion: v1alpha1
 kind: Setting
 metadata:
-  name: theme-earth-setting
+  name: theme-ocean-setting
 spec:
   forms:
     - group: layout
@@ -19,24 +19,32 @@ spec:
             - label: 单条
               value: single
           help: "选择单条时，文章卡片的图片将位于左侧"
-        - $formkit: select
-          name: header_widget
-          label: 首页顶部模块
-          value: site_title
+        - $formkit: radio
+          name: content_header
+          label: 文章页顶部图片
+          value: true
           options:
-            - label: 无
-              value: none
-            - label: 最新一篇文章
-              value: latest_post
-            - label: 文章网格（最新五篇文章）
-              value: latest_post_grid
-            - label: 站点标题
-              value: site_title
+            - label: 显示
+              value: true
+            - label: 隐藏
+              value: false
+
+    - group: banner
+      label: Banner
+      formSchema:
+        - $formkit: text
+          name: custom_title
+          label: Banner标题
+          value: FIT2CLOUD
+        - $formkit: text
+          name: custom_sub_title
+          label: Banner副标题
+          value: FIT2CLOUD
         - $formkit: select
           name: header_background_type
           id: header_background_type
           key: header_background_type
-          label: 首页顶部背景
+          label: Banner背景
           value: image
           options:
             - label: 手动设置
@@ -48,24 +56,89 @@ spec:
           name: header_background
           id: header_background
           key: header_background
-          label: 首页顶部背景
+          label: Banner背景色
+          help: "填写 16 进制颜色"
         - $formkit: attachment
           if: "$get(header_background_type).value === image"
           name: header_background_image
           id: header_background_image
           key: header_background_image
-          label: 首页顶部背景图片
-          value: /themes/theme-earth/assets/images/default-background.png
+          label: Banner背景图片
+          value: /themes/theme-kb/assets/images/default-background.png
         - $formkit: radio
-          name: content_header
-          label: 文章页顶部
+          name: banner_search
+          label: 是否显示搜索框
           value: true
           options:
             - label: 显示
               value: true
             - label: 隐藏
               value: false
-
+        - $formkit: tagCheckbox
+          name: tags
+          id: tags
+          key: tags
+          label: 热门查询
+          help: "选择多于三个标签，自动隐藏超出标签"
+                
+    - group: index
+      label: 首页
+      formSchema:
+        - $formkit: radio
+          name: index_theme
+          id: index_theme
+          key: index_theme
+          label: 是否显示常见主题
+          value: true
+          options:
+            - label: 显示
+              value: true
+            - label: 隐藏
+              value: false
+        - $formkit: menuRadio
+          if: "$get(index_theme).value === true"
+          name: menu
+          id: menu
+          key: menu
+          label: 常见主题
+          help: 默认显示前四个一级菜单项
+        - $formkit: radio
+          name: index_tag
+          id: index_tag
+          key: index_tag
+          label: 是否显示推荐阅读
+          value: true
+          options:
+            - label: 显示
+              value: true
+            - label: 隐藏
+              value: false
+        - $formkit: select
+          if: "$get(index_tag).value === true"
+          name: index_recommend
+          id: index_recommend
+          key: index_recommend
+          label: 推荐阅读类型
+          value: tag
+          options:
+            - label: 文章标签
+              value: tag
+            - label: 文章分类
+              value: categories
+        - $formkit: tagSelect
+          if: "$get(index_tag).value === true && $get(index_recommend).value === tag"
+          name: tag
+          id: tag
+          key: tag
+          label: 推荐阅读
+          help: 默认显示选中标签的前六篇文章
+        - $formkit: categorySelect
+          if: "$get(index_tag).value === true && $get(index_recommend).value === categories"
+          name: category
+          id: category
+          key: category
+          label: 推荐阅读
+          help: 默认显示选中分类的前六篇文章
     - group: style
       label: 样式
       formSchema:
@@ -74,8 +147,6 @@ spec:
           label: 默认配色
           value: system
           options:
-            - label: 跟随系统
-              value: system
             - label: 深色
               value: dark
             - label: 浅色
@@ -93,7 +164,6 @@ spec:
           name: widgets
           label: 小部件
           value:
-            - value: popular-posts
             - value: categories
             - value: tags
           children:
@@ -109,6 +179,8 @@ spec:
                   value: categories
                 - label: 文章标签
                   value: tags
+                - label: 返回首页
+                  value: home
 
         - $formkit: group
           name: profile
@@ -198,7 +270,8 @@ spec:
               value: style_1
             - label: 风格二
               value: style_2
-
+            - label: 风格三
+              value: style_3
         - $formkit: attachment
           name: logo
           label: Logo
@@ -214,7 +287,7 @@ spec:
           name: slogan
           id: slogan
           key: slogan
-          if: "$get(style).value === style_2"
+          if: "$get(style).value === style_2 || $get(style).value === style_3"
           label: 标语
 
         - $formkit: menuRadio
@@ -225,7 +298,7 @@ spec:
           label: 右侧菜单
 
         - $formkit: repeater
-          if: "$get(style).value === style_2"
+          if: "$get(style).value === style_2 || $get(style).value === style_3"
           name: menus
           id: menus
           key: menus

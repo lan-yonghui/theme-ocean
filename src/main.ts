@@ -3,10 +3,12 @@ import "./styles/main.css";
 import Alpine from "alpinejs";
 import * as tocbot from "tocbot";
 import dropdown from "./alpine-data/dropdown";
+import colorSchemeSwitcher from "./alpine-data/color-scheme-switcher";
 
 window.Alpine = Alpine;
 
 Alpine.data("dropdown", dropdown);
+Alpine.data("colorSchemeSwitcher", colorSchemeSwitcher);
 
 Alpine.start();
 
@@ -26,10 +28,10 @@ export function generateToc() {
     tocSelector: ".toc",
     contentSelector: "#content",
     headingSelector: "h1, h2, h3, h4",
-    extraListClasses: "space-y-1 dark:border-slate-500",
+    extraListClasses: "space-y-1 dark:border-zinc-500",
     extraLinkClasses:
-      "group flex items-center justify-between rounded py-1 px-1.5 transition-all hover:bg-gray-100 text-sm opacity-80 dark:hover:bg-slate-700 dark:text-slate-50",
-    activeLinkClass: "is-active-link bg-gray-100 dark:bg-slate-600",
+      "group flex items-center justify-between rounded py-1 px-1.5 transition-all hover:bg-zinc-100 text-sm opacity-80 dark:hover:bg-zinc-700 dark:text-zinc-50",
+    activeLinkClass: "is-active-link bg-zinc-100 dark:bg-zinc-600",
     collapseDepth: 6,
     headingsOffset: 100,
     scrollSmooth: true,

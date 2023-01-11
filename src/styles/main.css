@@ -33,3 +33,38 @@ body {
 .toc-list-item > .toc-list {
   @apply my-3 ml-3 space-y-1 border-l pl-2;
 }
+
+.text-overflow {
+  overflow: hidden; 
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+/*a标签增加指上下划线*/
+.hover-within a{
+  position: relative
+}
+
+.hover-within a::after{
+  --tw-bg-opacity: 1;
+  background-color: rgb(255 255 255/var(--tw-bg-opacity));
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 2px;
+  position: absolute;
+  right: 0;
+  transition: width .2s ease;
+  -webkit-transition: width .2s ease;
+  width: 0
+}
+
+.hover-within a:hover::after {
+  background: #9fdef7;
+  left: 0;
+  width: 100%
+}
+
+/*a标签增加指上下划线*/

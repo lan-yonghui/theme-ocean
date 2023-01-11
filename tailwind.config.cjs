@@ -40,6 +40,8 @@ module.exports = {
     })),
   ],
   safelist: [
+    "i-gg-sun",
+    "i-gg-moon",
     "i-tabler-mail",
     "i-simple-icons-wechat",
     "i-simple-icons-tencentqq",

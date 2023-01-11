@@ -1,17 +1,19 @@
-# Earth
+# 知识库【theme-ocean】
 
-Halo 2.0 的默认主题。
+![Ocean](./screenshot.jpg)
 
-![Earth](./screenshot.jpg)
+Halo 2.0 知识库主题。
+
+主题借鉴 Halo2.0 默认主题 [theme-earth](https://github.com/halo-dev/theme-earth.git)
 
 ## 开发
 
 ```bash
-git clone git@github.com:halo-dev/theme-earth.git ~/halo2-dev/themes/theme-earth
+git clone git@github.com:halo-dev/theme-ocean.git ~/halo2-dev/themes/theme-ocean
 ```
 
 ```bash
-cd ~/halo2-dev/themes/theme-earth
+cd ~/halo2-dev/themes/theme-ocean
 ```
 
 ```bash
